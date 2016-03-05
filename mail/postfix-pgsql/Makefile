@@ -13,7 +13,7 @@ POSTFIX_LIB_MKMAP=	no
 
 CCARGS+=		-I${PGSQL_PREFIX}/include
 AUXLIBS_MODULE=		-L${PGSQL_PREFIX}/lib -lpq				\
-			${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.pgsql}/lib
+			${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.${PGSQL_TYPE}}/lib
 
 .include "../../mk/pgsql.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
