@@ -12,11 +12,11 @@ MAINTAINER=		timshel@fluentdevelopment.com.au
 HOMEPAGE=		http://greyd.org/
 COMMENT=		OpenBSD spam deferral daemon
 
-GREYD_HOME=		${VARBASE}/chroot/spamd
+GREYD_HOME=		${VARBASE}/chroot/greyd
 OWN_DIRS=		${GREYD_HOME}
 
 CPPFLAGS+=		-DPATH_GREYD_HOME=\"${GREYD_HOME}\"
-CPPFLAGS+=		-DPATH_GREYD_DB=\"${VARBASE}/db/spamd\"
+CPPFLAGS+=		-DPATH_GREYD_DB=\"${VARBASE}/db/greyd\"
 CPPFLAGS+=		-DPATH_PFCTL=\"${PFCTL}\"
 CPPFLAGS+=		-DPATH_GREYD_CONF=\"${GREYD_CONF}\"
 
