@@ -22,11 +22,9 @@ RCD_SCRIPTS=		greyd
 GNU_CONFIGURE=          yes
 CONFIGURE_ARGS+=        --sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=        --localstatedir=${VARBASE}
-CONFIGURE_ARGS+=        --localstatedir=${VARBASE}
 
 CONFIGURE_ENV+= 	GREYD_PIDFILE=${GREYD_HOME}/greyd.pid
 CONFIGURE_ENV+= 	GREYLOGD_PIDFILE=${GREYD_HOME}/greylogd.pid
-
 
 USE_TOOLS+= 		aclocal
 USE_TOOLS+= 		autoheader
