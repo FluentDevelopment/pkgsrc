@@ -45,9 +45,16 @@ CONFIGURE_ARGS+=	--with-bdb
 # CONFIGURE_ARGS+=	--with-bdb-sql
 # BDB_INCLUDE_DIR_ and BDB_LIB_DIR don't have to be particularly accurate
 # since the real -I and -L flags are added by buildlink already.
-CONFIGURE_ENV+=	 BDB_INCLUDE_DIR=${BDBBASE}/include
-CONFIGURE_ENV+=	 BDB_LIB_DIR=${BDBBASE}/lib
-CONFIGURE_ENV+=	 BDB_LIB=${BDB_LIBS:S/^-l//:M*:Q}
+CONFIGURE_ENV+=	 	BDB_INCLUDE_DIR=${BDBBASE}/include
+CONFIGURE_ENV+=	 	BDB_LIB_DIR=${BDBBASE}/lib
+CONFIGURE_ENV+=	 	BDB_LIB=${BDB_LIBS:S/^-l//:M*:Q}
+
+# TODO: The DB dir... how does this work in relation to the chroot?
+GREYD_DBDIR+=		${VARBASE}/db/greyd
+OWN_DIRS+=		${GREYD_DBDIR}
+# TODO: Do we need to install this folder? How do we set appropriate perms on it?
+INSTALLATION_DIRS+=	${GREYD_DBDIR}
+
 .endif
 
 ###
