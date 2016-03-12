@@ -10,16 +10,6 @@ HOMEPAGE=		http://greyd.org/
 LICENSE=		isc
 COMMENT=		Portable, firewall-integrated SMTP spam deferral & greylisting daemon
 
-BUILD_DEFS+=		VARBASE
-
-GREYD_HOME=		${VARBASE}/chroot/greyd
-OWN_DIRS=		${GREYD_HOME}
-
-CPPFLAGS+=		-DPATH_GREYD_HOME=\"${GREYD_HOME}\"
-CPPFLAGS+=		-DPATH_GREYD_DB=\"${VARBASE}/db/greyd\"
-CPPFLAGS+=		-DPATH_PFCTL=\"${PFCTL}\"
-CPPFLAGS+=		-DPATH_GREYD_CONF=\"${GREYD_CONF}\"
-
 PKG_GROUPS=		greyd
 PKG_USERS=		greyd:greyd
 PKG_GECOS.greyd=	Greylisting Daemon User
@@ -32,6 +22,11 @@ RCD_SCRIPTS=		greyd
 GNU_CONFIGURE=          yes
 CONFIGURE_ARGS+=        --sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=        --localstatedir=${VARBASE}
+CONFIGURE_ARGS+=        --localstatedir=${VARBASE}
+
+CONFIGURE_ENV+= 	GREYD_PIDFILE=${GREYD_HOME}/greyd.pid
+CONFIGURE_ENV+= 	GREYLOGD_PIDFILE=${GREYD_HOME}/greylogd.pid
+
 
 USE_TOOLS+= 		aclocal
 USE_TOOLS+= 		autoheader
@@ -41,8 +36,18 @@ USE_LIBTOOL=		yes
 USE_TOOLS+=		gmake
 MAKE_PROGRAM=		gmake
 
-GREYD_CONF=		${PKG_SYSCONFDIR}/greyd.conf
+CPPFLAGS+=             -DGREYD_CHROOT_DIR=\"${GREYD_HOME}\"
+
+BUILD_DEFS+=		VARBASE
+
+GREYD_HOME=		${VARBASE}/chroot/greyd
+
+GREYD_CONFDIR=		${PKG_SYSCONFDIR}/greyd
+GREYD_CONF=		${GREYD_CONFDIR}/greyd/greyd.conf
 CONF_FILES=		${PREFIX}/share/examples/greyd/greyd.conf ${GREYD_CONF}
+
+OWN_DIRS=		${GREYD_HOME}
+OWN_DIRS+=		${GREYD_CONFDIR}
 
 SUBST_CLASSES+=		fix-paths
 SUBST_STAGE.fix-paths=	post-patch
