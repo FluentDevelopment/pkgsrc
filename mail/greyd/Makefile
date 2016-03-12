@@ -43,7 +43,7 @@ BUILD_DEFS+=		VARBASE
 GREYD_HOME=		${VARBASE}/chroot/greyd
 
 GREYD_CONFDIR=		${PKG_SYSCONFDIR}/greyd
-GREYD_CONF=		${GREYD_CONFDIR}/greyd/greyd.conf
+GREYD_CONF=		${GREYD_CONFDIR}/greyd.conf
 CONF_FILES=		${PREFIX}/share/examples/greyd/greyd.conf ${GREYD_CONF}
 
 OWN_DIRS=		${GREYD_HOME}
