@@ -1,16 +1,16 @@
 # $NetBSD$
 
-PKGVERSION=		0.9.2
-PKGNAME=		greyd-${PKGVERSION}
-DISTNAME=		v${PKGVERSION}
+DISTNAME=		greyd-0.9.2
 CATEGORIES=		mail
-MASTER_SITES=		https://github.com/mikey-austin/greyd/archive/
-WRKSRC=			${WRKDIR}/${PKGNAME}
-LICENSE=		bsd
+MASTER_SITES=		${MASTER_SITE_GITHUB:=mikey-austin/}
+GITHUB_TAG=		v${PKGVERSION_NOREV}
 
 MAINTAINER=		timshel@fluentdevelopment.com.au
 HOMEPAGE=		http://greyd.org/
-COMMENT=		OpenBSD spam deferral daemon
+LICENSE=		isc
+COMMENT=		Portable, firewall-integrated SMTP spam deferral & greylisting daemon
+
+BUILD_DEFS+=		VARBASE
 
 GREYD_HOME=		${VARBASE}/chroot/greyd
 OWN_DIRS=		${GREYD_HOME}
@@ -20,10 +20,10 @@ CPPFLAGS+=		-DPATH_GREYD_DB=\"${VARBASE}/db/greyd\"
 CPPFLAGS+=		-DPATH_PFCTL=\"${PFCTL}\"
 CPPFLAGS+=		-DPATH_GREYD_CONF=\"${GREYD_CONF}\"
 
-PKG_GROUPS=		_greyd
-PKG_USERS=		_greyd:_greyd
-PKG_GECOS._greyd=	Greylisting Daemon User
-PKG_HOME._greyd=	${GREYD_HOME}
+PKG_GROUPS=		greyd
+PKG_USERS=		greyd:greyd
+PKG_GECOS.greyd=	Greylisting Daemon User
+PKG_HOME.greyd=		${GREYD_HOME}
 
 RCD_SCRIPTS=		greyd
 
@@ -31,10 +31,11 @@ RCD_SCRIPTS=		greyd
 
 GNU_CONFIGURE=          yes
 CONFIGURE_ARGS+=        --sysconfdir=${PKG_SYSCONFDIR}
-#HAS_CONFIGURE=		yes
+CONFIGURE_ARGS+=        --localstatedir=${VARBASE}
 
-#AUTOCONF_REQD=  	2.50           # if default version is not good enough
-USE_TOOLS+= 		autoconf        # use "autoconf213" for autoconf-2.13
+USE_TOOLS+= 		aclocal
+USE_TOOLS+= 		autoheader
+USE_TOOLS+= 		autoconf
 USE_TOOLS+= 		automake
 USE_LIBTOOL=		yes
 USE_TOOLS+=		gmake
@@ -43,14 +44,17 @@ MAKE_PROGRAM=		gmake
 GREYD_CONF=		${PKG_SYSCONFDIR}/greyd.conf
 CONF_FILES=		${PREFIX}/share/examples/greyd/greyd.conf ${GREYD_CONF}
 
-SUBST_CLASSES+=		fix
-SUBST_STAGE.fix=	post-patch
-SUBST_FILES.fix=	doc/greyd.8
-SUBST_FILES.fix+=	doc/greyd.conf.5
-SUBST_FILES.fix+=	doc/greyd-setup.8
-SUBST_SED.fix=		-e 's,/etc/greyd,${PKG_SYSCONFDIR}/greyd,g'
-SUBST_SED.fix+=		-e 's,/usr/sbin/,${PREFIX}/sbin/,g'
-SUBST_MESSAGE.fix=	Fixing configuration paths.
+SUBST_CLASSES+=		fix-paths
+SUBST_STAGE.fix-paths=	post-patch
+SUBST_FILES.fix-paths=	doc/greyd.8
+SUBST_FILES.fix-paths+=	etc/greyd.conf.in
+SUBST_SED.fix-paths=	-e 's,/etc/greyd,${PKG_SYSCONFDIR}/greyd,g'
+SUBST_SED.fix-paths+=	-e 's,/usr/\(sbin/greydb\),${PREFIX}/\1/,g'
+SUBST_SED.fix-paths+=	-e 's,/usr/sbin/\(greyd\),${PREFIX}/libexec/\1/,g'
+SUBST_SED.fix-paths+=	-e 's,/var/empty/greyd,${GREYD_HOME},g'
+SUBST_MESSAGE.fix-paths=	Fixing pkgsrc paths.
+
+GREYD_MANS=		greyd.conf.5 greyd.8 greyd-setup.8 greydb.8 greylogd.8
 
 INSTALLATION_DIRS+=	libexec sbin ${PKGMANDIR}/cat5 ${PKGMANDIR}/man5
 INSTALLATION_DIRS+=	${PKGMANDIR}/cat8 ${PKGMANDIR}/man8 share/examples/greyd
@@ -60,17 +64,6 @@ pre-configure:
 	aclocal; autoheader; libtoolize; automake -a --foreign -i; autoconf
 
 do-install:
-	# ${INSTALL_MAN} ${WRKSRC}/doc/greyd.conf.5 \
-	# 	${DESTDIR}${PREFIX}/${PKGMANDIR}/man5
-	# ${INSTALL_MAN} ${WRKSRC}/doc/greyd.8 \
-	# 	${DESTDIR}${PREFIX}/${PKGMANDIR}/man8
-	# ${INSTALL_MAN} ${WRKSRC}/doc/greyd-setup.8 \
-	# 	${DESTDIR}${PREFIX}/${PKGMANDIR}/man8
-	# ${INSTALL_MAN} ${WRKSRC}/doc/greydb.8 \
-	# 	${DESTDIR}${PREFIX}/${PKGMANDIR}/man8
-	# ${INSTALL_MAN} ${WRKSRC}/doc/greylogd.8 \
-	# 	${DESTDIR}${PREFIX}/${PKGMANDIR}/man8
-
 	set -e; cd ${WRKSRC}/doc; ${MAKE_PROGRAM} install DESTDIR=${DESTDIR}
 	set -e; cd ${WRKSRC}/drivers; ${MAKE_PROGRAM} install DESTDIR=${DESTDIR}
 	${INSTALL_PROGRAM} ${WRKSRC}/src/greyd-setup \
@@ -83,6 +76,9 @@ do-install:
 		${DESTDIR}${PREFIX}/libexec
 	${INSTALL_DATA} ${WRKSRC}/etc/greyd.conf \
 		${DESTDIR}${PREFIX}/share/examples/greyd
+.for man in ${GREYD_MANS}; do \
+	${INSTALL_MAN} ${WRKSRC}/doc/${man} ${DESTDIR}${PREFIX}/${PKGMANDIR}/man${man:C/.*\.//W}
+.endfor
 
 .include "../../devel/libltdl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

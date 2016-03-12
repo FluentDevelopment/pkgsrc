@@ -107,7 +107,7 @@ PKG_FAIL_REASON=	"pf not available on this system"
 ###
 .if !empty(PKG_OPTIONS:Mspf)
 CONFIGURE_ARGS+=	--with-spf
-. include "../libspf2/buildlink3.mk"
+. include "../../mail/libspf2/buildlink3.mk"
 .endif
 
 
