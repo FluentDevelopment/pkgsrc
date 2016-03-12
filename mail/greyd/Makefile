@@ -53,8 +53,10 @@ SUBST_CLASSES+=		fix-paths
 SUBST_STAGE.fix-paths=	post-patch
 SUBST_FILES.fix-paths=	doc/greyd.8
 SUBST_FILES.fix-paths+=	etc/greyd.conf.in
-SUBST_SED.fix-paths=	-e 's,/etc/greyd,${PKG_SYSCONFDIR}/greyd,g'
+SUBST_SED.fix-paths=	-e 's,/etc/greyd,${GREYD_CONFDIR},g'
+# greydb lives in sbin/; substitute this first...
 SUBST_SED.fix-paths+=	-e 's,/usr/\(sbin/greydb\),${PREFIX}/\1/,g'
+# and then make sure references to other executables point to libexec/
 SUBST_SED.fix-paths+=	-e 's,/usr/sbin/\(greyd\),${PREFIX}/libexec/\1/,g'
 SUBST_SED.fix-paths+=	-e 's,/var/empty/greyd,${GREYD_HOME},g'
 SUBST_MESSAGE.fix-paths=	Fixing pkgsrc paths.
