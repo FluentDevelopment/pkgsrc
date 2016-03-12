@@ -11,7 +11,7 @@
 name="greyd"
 rcvar=$name
 command="@PREFIX@/libexec/greyd"
-required_files="@PKG_SYSCONFDIR@/greyd.conf"
+required_files="@GREYD_CONF@"
 
 greyd_postcmd()
 {

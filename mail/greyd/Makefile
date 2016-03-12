@@ -47,6 +47,9 @@ CONF_FILES=		${PREFIX}/share/examples/greyd/greyd.conf ${GREYD_CONF}
 OWN_DIRS=		${GREYD_HOME}
 OWN_DIRS+=		${GREYD_CONFDIR}
 
+# We use @GREYD_CONF@ in the rc.d script
+FILES_SUBST+=		GREYD_CONF=${GREYD_CONF:Q}
+
 SUBST_CLASSES+=		fix-paths
 SUBST_STAGE.fix-paths=	post-patch
 SUBST_FILES.fix-paths=	doc/greyd.8
