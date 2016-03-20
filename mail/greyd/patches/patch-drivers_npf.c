@@ -2,15 +2,7 @@ $NetBSD$
 
 --- drivers/npf.c.orig	2015-06-22 05:21:14.000000000 +0000
 +++ drivers/npf.c
-@@ -49,6 +49,7 @@
- 
- #define NPFDEV_PATH "/dev/npf"
- #define NPFLOG_IF   "npflog0"
-+#define TABLE_NAME  "smtp_whitelist"
- #define TABLE_ID    5
- 
- #define PCAPSNAP 512
-@@ -130,12 +131,16 @@ Mod_fw_replace(FW_handle_T handle, const
+@@ -130,12 +130,16 @@ Mod_fw_replace(FW_handle_T handle, const
          return 0;
  
      ncf = npf_config_create();
