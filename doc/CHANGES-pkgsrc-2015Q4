@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-pkgsrc-2015Q4,v 1.1.2.15 2016/02/10 20:48:45 bsiegert Exp $
+$NetBSD: CHANGES-pkgsrc-2015Q4,v 1.1.2.26 2016/03/22 19:17:05 bsiegert Exp $
 
 Changes to the packages collection and infrastructure on the 2015Q4 branch:
 
@@ -110,4 +110,80 @@ lang/php56: security fix
 
 Pullup ticket #4918 - requested by taca
 lang/php70: security fix
+
+Pullup ticket #4920 - requested by bouyer
+net/nagios-base: bugfix
+net/nagios-plugins: fix packaging issue
+
+Pullup ticket #4921 - requested by rillig
+pkgtools/pkglint: bugfix
+
+Pullup ticket #4922 - requested by he
+www/curl: security update
+
+Pullup ticket #4924 - requested by taca
+www/squid3: security fix
+
+Pullup ticket #4926 - requested by bsiegert
+sysutils/salt: security fix
+
+Pullup ticket #4925 - requested by taca
+www/typo3_62: security fix
+
+Pullup ticket #4928 - requested by sevan
+security/libgcrypt: security fix
+
+Pullup ticket #4930 - requested by taca
+www/typo3_62: security fix
+
+Pullup ticket #4932 - requested by tnn
+databases/postgresql91: security fix
+
+Pullup ticket #4933 - requested by tnn
+databases/postgresql92: security fix
+
+Pullup ticket #4934 - requested by tnn
+databases/postgresql93: security fix
+
+Pullup ticket #4935 - requested by tnn
+databases/postgresql94: security fix
+
+Pullup ticket #4936 - requested by taca
+www/drupal7: security fix
+
+Pullup ticket #4937 - requested by taca
+www/drupal6: security fix
+
+Pullup ticket #4931 - requested by taca
+www/squid3: security fix
+
+Pullup ticket #4940 - requested by sevan
+graphics/graphite2: security fix
+
+Pullup ticket #4943 - requested by bsiegert
+www/netsurf: security update
+
+Pullup ticket #4944 - requested by taca
+lang/php55: security fix
+
+Pullup ticket #4945 - requested by taca
+lang/php56: security fix
+
+Pullup ticket #4947 - requested by taca
+www/ruby-actionpack32: security fix
+
+Pullup ticket #4946 - requested by taca
+lang/php70: security fix
+
+Pullup ticket #4949 - requested by taca
+net/bind910: security fix
+
+Pullup ticket #4950 - requested by taca
+net/bind99: security fix
+
+Pullup ticket #4953 - requested by sevan
+devel/git-base: security fix
+
+Pullup ticket #4954 - requested by gdt
+chat/libotr: security fix
 
