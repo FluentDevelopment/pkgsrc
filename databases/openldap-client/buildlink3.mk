@@ -18,16 +18,16 @@ CHECK_BUILTIN.openldap-client:=	yes
 .include "../../databases/openldap-client/builtin.mk"
 CHECK_BUILTIN.openldap-client:=	no
 
-.  if empty(USE_BUILTIN.openldap-client:M[yY][eE][sS])
 pkgbase := openldap-client
-.    include "../../mk/pkg-build-options.mk"
+.  include "../../mk/pkg-build-options.mk"
 
-.    if !empty(PKG_BUILD_OPTIONS.openldap-client:Mkerberos) || \
+.  if !empty(PKG_BUILD_OPTIONS.openldap-client:Mkerberos) || \
         !empty(PKG_BUILD_OPTIONS.openldap-client:Msasl)
-.      include "../../security/cyrus-sasl/buildlink3.mk"
-.    endif
+.    include "../../security/cyrus-sasl/buildlink3.mk"
 .  endif
-.include "../../security/openssl/buildlink3.mk"
+.  if empty(USE_BUILTIN.openldap-client:M[yY][eE][sS])
+.    include "../../security/openssl/buildlink3.mk"
+.  endif
 .endif # OPENLDAP_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-openldap-client
