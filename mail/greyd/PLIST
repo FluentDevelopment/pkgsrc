@@ -1,0 +1,16 @@
+@comment $NetBSD$
+${PLIST.bdb}lib/greyd/greyd_bdb.la
+${PLIST.mysql}lib/greyd/greyd_mysql.la
+${PLIST.npf}lib/greyd/greyd_npf.la
+${PLIST.pf}lib/greyd/greyd_pf.la
+${PLIST.sqlite}lib/greyd/greyd_sqlite.la
+libexec/greyd
+libexec/greyd-setup
+libexec/greylogd
+man/man5/greyd.conf.5
+man/man8/greyd-setup.8
+man/man8/greyd.8
+man/man8/greydb.8
+man/man8/greylogd.8
+sbin/greydb
+share/examples/greyd/greyd.conf
