@@ -39,6 +39,8 @@ spawnfcgi_start()
 		job_cwd=$(eval echo \$${name}_${job}_cwd)
 		job_port=$(eval echo \$${name}_${job}_port)
 		job_socket=$(eval echo \$${name}_${job}_socket)
+		job_socket_user=$(eval echo \$${name}_${job}_socket_user)
+		job_socket_group=$(eval echo \$${name}_${job}_socket_group)
 		job_socket_mode=$(eval echo \$${name}_${job}_socket_mode)
 		job_address=$(eval echo \$${name}_${job}_address)
 		job_children=$(eval echo \$${name}_${job}_children)
@@ -53,6 +55,12 @@ spawnfcgi_start()
 			opt_F="-F"
 		else
 			opt_F=""
+		fi
+		if [ -n "${job_socket_user}" ]; then
+			opt_U="-U"
+		fi
+		if [ -n "${job_socket_group}" ]; then
+			opt_G="-G"
 		fi
 		if [ -n "${job_socket_mode}" ]; then
 			opt_M="-M"
@@ -79,6 +87,8 @@ spawnfcgi_start()
 		    $opt_C ${job_php_children} \
 		    $opt_F ${job_children} \
 		    $opt_s ${job_socket} \
+		    $opt_U ${job_socket_user} \
+		    $opt_G ${job_socket_group} \
 		    $opt_M ${job_socket_mode} \
 		    $opt_a ${job_address} \
 		    $opt_p ${job_port} \
