@@ -1,0 +1,4 @@
+distfiles/*
+packages/*
+*/*/work*
+wip
