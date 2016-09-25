@@ -1,0 +1,9 @@
+===========================================================================
+$NetBSD$
+
+Don't forget to add the greyd ports to /etc/services:
+
+greyd		8025/tcp		# greyd(8)
+greyd-cfg	8026/tcp		# greyd(8) configuration
+
+===========================================================================

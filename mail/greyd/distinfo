@@ -1,0 +1,9 @@
+$NetBSD$
+
+SHA1 (greyd-0.9.2.tar.gz) = ddd81841dfd202794de8c89cc11c785a8e9c39a5
+RMD160 (greyd-0.9.2.tar.gz) = 78b1a770611ab35f38621d0c5a5ce476df591732
+SHA512 (greyd-0.9.2.tar.gz) = d23ad71351494e5e5d81457e8fcb3ca622326a137ab5783448155e38ab9b200cfe893fce5361f565cd763a66bf1810efe955a101788d92e5f374bcf8cf1ea5cd
+Size (greyd-0.9.2.tar.gz) = 603318 bytes
+SHA1 (patch-drivers_npf.c) = 5afa137c904b278093308b1794a349c1b1606972
+SHA1 (patch-drivers_pf.c) = 01f3311a9439cf4e75c4555a2f9f87dbfff21fd2
+SHA1 (patch-src_constants.h) = 022e4d0144010e39e52c56bfcc460f03e8126569
