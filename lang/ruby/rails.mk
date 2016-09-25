@@ -9,8 +9,8 @@ _RUBY_RAILS_MK=	# defined
 # RUBY_RAILS_DEFAULT
 #	Select default Ruby on Rails version.
 #
-#	Possible values: 32
-#	Default: 32
+#	Possible values: 32 42
+#	Default: 42
 #
 #
 # === Package-settable variables ===
@@ -18,7 +18,7 @@ _RUBY_RAILS_MK=	# defined
 # RUBY_RAILS_SUPPORTED
 #	The Ruby on Rails versions that are acceptable for the package.
 #
-#	Possible values: 32
+#	Possible values: 32 42
 #	Default: (empty)
 #
 # RUBY_RAILS_STRICT_DEP
@@ -32,16 +32,17 @@ _RUBY_RAILS_MK=	# defined
 # RUBY_RAILS
 #	Selected Ruby on Rails version.
 #
-#	Possible values: 32
+#	Possible values: 32 42
 #
 
 #
 # current Ruby on Rails versions.
 #
 RUBY_RAILS32_VERSION?=	3.2.22.4
+RUBY_RAILS42_VERSION?=	4.2.5.1
 
 RUBY_RAILS_SUPPORTED?=	# defined
-RUBY_RAILS_DEFAULT?=	32
+RUBY_RAILS_DEFAULT?=	42
 
 RUBY_RAILS_STRICT_DEP?=	no
 
@@ -51,7 +52,10 @@ RUBY_RAILS=			${RUBY_RAILS_SUPPORTED}
 
 .if empty(RUBY_RAILS)
 _RUBY_INSTALLED_RAILS!= \
-	if ${PKG_INFO} -qe "${RUBY_PKGPREFIX}-rack>=1.4" || \
+	if ${PKG_INFO} -qe "${RUBY_PKGPREFIX}-rack>=1.6" || \
+		${PKG_INFO} -qe "${RUBY_PKGPREFIX}-activesupport>=4.2"; then \
+		${ECHO} 42; \
+	elif ${PKG_INFO} -qe "${RUBY_PKGPREFIX}-rack>=1.4" || \
 		${PKG_INFO} -qe "${RUBY_PKGPREFIX}-activesupport>=3.2"; then \
 		${ECHO} 32; \
 	else \
@@ -64,7 +68,11 @@ RUBY_RAILS:=	${RUBY_RAILS_DEFAULT}
 . endif
 .endif
 
-RUBY_RAILS_VERSION:=	${RUBY_RAILS32_VERSION}
+.if defined(RUBY_RAILS${RUBY_RAILS}_VERSION)
+RUBY_RAILS_VERSION:=	${RUBY_RAILS${RUBY_RAILS}_VERSION}
+.else
+RUBY_RAILS_VERSION:=	${RUBY_RAILS42_VERSION}
+.endif
 
 #
 # Components of Ruby's version.
@@ -110,21 +118,30 @@ RUBY_RAILS32_ACTIONMAILER=	../../mail/ruby-actionmailer32
 RUBY_RAILS32_RAILTIES=		../../devel/ruby-railties32
 RUBY_RAILS32_RAILS=		../../www/ruby-rails32
 
+RUBY_RAILS42_ACTIVESUPPORT=	../../devel/ruby-activesupport42
+RUBY_RAILS42_ACTIVEMODEL=	../../devel/ruby-activemodel42
+RUBY_RAILS42_ACTIONPACK=	../../www/ruby-actionpack42
+RUBY_RAILS42_ACTIVERECORD=	../../databases/ruby-activerecord42
+RUBY_RAILS42_ACTIVERESOURCE=	../../www/ruby-activeresource42
+RUBY_RAILS42_ACTIONMAILER=	../../mail/ruby-actionmailer42
+RUBY_RAILS42_RAILTIES=		../../devel/ruby-railties42
+RUBY_RAILS42_RAILS=		../../www/ruby-rails42
+
 RUBY_ACTIVESUPPORT_DEPENDS= \
-	${RUBY_PKGPREFIX}-activesupport${_RAILS_DEP}:${RUBY_RAILS32_ACTIVESUPPORT}
+	${RUBY_PKGPREFIX}-activesupport${_RAILS_DEP}:${RUBY_RAILS${RUBY_RAILS}_ACTIVESUPPORT}
 RUBY_ACTIVEMODEL_DEPENDS= \
-	${RUBY_PKGPREFIX}-activemodel${_RAILS_DEP}:${RUBY_RAILS32_ACTIVEMODEL}
+	${RUBY_PKGPREFIX}-activemodel${_RAILS_DEP}:${RUBY_RAILS${RUBY_RAILS}_ACTIVEMODEL}
 RUBY_ACTIONPACK_DEPENDS= \
-	${RUBY_PKGPREFIX}-actionpack${_RAILS_DEP}:${RUBY_RAILS32_ACTIONPACK}
+	${RUBY_PKGPREFIX}-actionpack${_RAILS_DEP}:${RUBY_RAILS${RUBY_RAILS}_ACTIONPACK}
 RUBY_ACTIVERECORD_DEPENDS= \
-	${RUBY_PKGPREFIX}-activerecord${_RAILS_DEP}:${RUBY_RAILS32_ACTIVERECORD}
+	${RUBY_PKGPREFIX}-activerecord${_RAILS_DEP}:${RUBY_RAILS${RUBY_RAILS}_ACTIVERECORD}
 RUBY_ACTIVERESOURCE_DEPENDS= \
 	${RUBY_PKGPREFIX}-activeresource${_RAILS_DEP}:${RUBY_RAILS32_ACTIVERESOURCE}
 RUBY_ACTIONMAILER_DEPENDS= \
-	${RUBY_PKGPREFIX}-actionmailer${_RAILS_DEP}:${RUBY_RAILS32_ACTIONMAILER}
+	${RUBY_PKGPREFIX}-actionmailer${_RAILS_DEP}:${RUBY_RAILS${RUBY_RAILS}_ACTIONMAILER}
 RUBY_RAILTIES_DEPENDS= \
-	${RUBY_PKGPREFIX}-railties${_RAILS_DEP}:${RUBY_RAILS32_RAILTIES}
+	${RUBY_PKGPREFIX}-railties${_RAILS_DEP}:${RUBY_RAILS${RUBY_RAILS}_RAILTIES}
 RUBY_RAILS_DEPENDS= \
-	${RUBY_PKGPREFIX}-rails${_RAILS_DEP}:${RUBY_RAILS32_RAILS}
+	${RUBY_PKGPREFIX}-rails${_RAILS_DEP}:${RUBY_RAILS${RUBY_RAILS}_RAILS}
 
 .endif
