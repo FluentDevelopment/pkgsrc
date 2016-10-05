@@ -12,7 +12,7 @@ LICENSE=	mit
 #DEPENDS+=	${RUBY_ACTIVESUPPORT_DEPENDS}
 DEPENDS+=	${RUBY_ACTIVEMODEL_DEPENDS}
 DEPENDS+=	${RUBY_PKGPREFIX}-arel30>=3.0.2<3.1:../../databases/ruby-arel30
-DEPENDS+=	${RUBY_PKGPREFIX}-tzinfo>=0.3.29<0.4:../../time/ruby-tzinfo
+DEPENDS+=	${RUBY_PKGPREFIX}-tzinfo>=1.2.2<1.3:../../time/ruby-tzinfo
 
 RUBY_RAILS_SUPPORTED=	42
 RUBY_RAILS_STRICT_DEP=	yes
