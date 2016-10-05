@@ -166,6 +166,7 @@ ${GEM_LIBDIR}/lib/active_support/log_subscriber.rb
 ${GEM_LIBDIR}/lib/active_support/log_subscriber/test_helper.rb
 ${GEM_LIBDIR}/lib/active_support/logger.rb
 ${GEM_LIBDIR}/lib/active_support/logger_silence.rb
+${GEM_LIBDIR}/lib/active_support/logger_thread_safe_level.rb
 ${GEM_LIBDIR}/lib/active_support/message_encryptor.rb
 ${GEM_LIBDIR}/lib/active_support/message_verifier.rb
 ${GEM_LIBDIR}/lib/active_support/multibyte.rb
