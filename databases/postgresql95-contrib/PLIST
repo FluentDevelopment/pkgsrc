@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.1 2016/06/19 20:48:29 fhajny Exp $
+@comment $NetBSD$
 bin/oid2name
 bin/pg_standby
 bin/vacuumlo
