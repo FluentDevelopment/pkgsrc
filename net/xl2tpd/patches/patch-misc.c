@@ -2,13 +2,13 @@ $NetBSD: patch-misc.c,v 1.1 2013/07/12 19:06:31 christos Exp $
 
 Declare inline in a separate file.
 
---- misc.c.orig	2013-06-17 06:17:24.000000000 -0400
-+++ misc.c	2013-07-12 14:58:32.000000000 -0400
-@@ -170,33 +170,6 @@
+--- misc.c.orig	2016-08-12 00:56:53.000000000 +0000
++++ misc.c
+@@ -175,33 +175,6 @@ void do_packet_dump (struct buffer *buf)
      printf ("}\n");
  }
  
--inline void swaps (void *buf_v, int len)
+-void swaps (void *buf_v, int len)
 -{
 -#ifdef __alpha
 -    /* Reverse byte order alpha is little endian so lest save a step.

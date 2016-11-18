@@ -1,12 +1,9 @@
 # $NetBSD: Makefile,v 1.3 2015/06/01 14:01:21 hauke Exp $
 #
 
-DISTNAME=		xl2tpd-20140214
+DISTNAME=		xl2tpd-1.3.8
 CATEGORIES=		net
-PKGREVISION=		1
-MASTER_SITES=		-https://github.com/xelerance/xl2tpd/archive/master.zip
-EXTRACT_SUFX=		.zip
-WRKSRC=			${WRKDIR}/xl2tpd-master
+MASTER_SITES=		-https://github.com/xelerance/xl2tpd/archive/v1.3.8.tar.gz
 
 MAINTAINER=		christos@NetBSD.org
 HOMEPAGE=		http://www.xelerance.com/services/software/xl2tpd/
