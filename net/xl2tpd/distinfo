@@ -1,15 +1,16 @@
 $NetBSD: distinfo,v 1.8 2015/11/04 00:35:46 agc Exp $
 
-SHA1 (xl2tpd-20140214.zip) = 6d5d38674b6671ef1cd1880a548645ae08725a9e
-RMD160 (xl2tpd-20140214.zip) = 684f3d1d07ce3b0629123f056f8cf3f6d67c41f3
-SHA512 (xl2tpd-20140214.zip) = dc3425caebf5851909912c0e53cc699b725700ff0ec6285ab2b8fc3c72e4ea862810c8c1c9606ff89217c18e7ebf518c52dedb4b6154eb3b6d25eb7fadad0802
-Size (xl2tpd-20140214.zip) = 591764 bytes
+SHA1 (xl2tpd-1.3.8.tar.gz) = 915ef35882f205b8916c26f57ae82cc493b0cd85
+RMD160 (xl2tpd-1.3.8.tar.gz) = ffcbfdb0aa1ce18594cfde587a79ef40788e91c0
+SHA512 (xl2tpd-1.3.8.tar.gz) = 5734f35bdfb4c8379c197f73d1bc00b347324a05baf66e603ed11089a5ecec66116bbe7c200a7ef51df116d4a640a50036794480aa103120c3be16ab35a612b9
+Size (xl2tpd-1.3.8.tar.gz) = 509876 bytes
 SHA1 (patch-Makefile) = fde2535eb5c2eb498df8e96162d2f24dba27b3dd
-SHA1 (patch-control.c) = 3b1aa772be07bdc1312d94c8e0b1543086b6fb7f
-SHA1 (patch-l2tp.h) = d068d47170da6a1a3d960ef6f7a7027c10c8820f
-SHA1 (patch-md5.c) = cc100db8b9314a86a96464cde4df78c387b56e9a
-SHA1 (patch-misc.c) = 8c1b0bff81af1f5718cbf1d02e4f47fcad14c9a9
-SHA1 (patch-misc.h) = dd7a42bee5a16cc583bfcfc31b1fc589d39515ab
-SHA1 (patch-network.c) = f5aae9874b7024eb339b439b5bd0354dd4f320fc
+SHA1 (patch-control.c) = 2d24c9ab81e9134d3985c472e75f641d53d3f76e
+SHA1 (patch-l2tp.h) = 71d39b1078fb8dd9573111d24f3a84661f2e67ad
+SHA1 (patch-md5.c) = 52a47e9973cc079dcaf0768bb90094c96c75a7fa
+SHA1 (patch-misc.c) = f1b2f1e90e2ac54624c94c0ab82afc78bc14bff7
+SHA1 (patch-misc.h) = e7188d4cbaaec33ebc2dd4f777dbaa5e4bd71ccb
+SHA1 (patch-network.c) = f0754941b10a73d554ad0231ec1aae018c8b9eeb
+SHA1 (patch-osport.h) = 52d051fc5044dc32928069cd9069f942c5f01e72
 SHA1 (patch-pty.c) = ade58a4e34f0977ebaba713b0be74ed943047a13
-SHA1 (patch-xl2tpd.c) = b5ff4245b380d9aff480f9dbe961c92faf691b3d
+SHA1 (patch-xl2tpd.c) = 5c7cc78fa02b1fb832bd895deb8a2d8dc3c450c8
