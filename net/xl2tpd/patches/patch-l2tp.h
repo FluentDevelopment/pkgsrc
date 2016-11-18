@@ -1,11 +1,8 @@
-$NetBSD: patch-l2tp.h,v 1.2 2013/07/12 19:06:31 christos Exp $
+$NetBSD$
 
-Include common.h first since it typedefs things other headers need
-Conditionalize in_pktinfo
-
---- l2tp.h.orig	2013-06-17 06:17:24.000000000 -0400
-+++ l2tp.h	2013-07-12 15:00:53.000000000 -0400
-@@ -28,13 +28,13 @@
+--- l2tp.h.orig	2016-08-12 00:56:53.000000000 +0000
++++ l2tp.h
+@@ -30,13 +30,13 @@ typedef unsigned long long _u64;
  #endif
  #include "osport.h"
  #include "scheduler.h"
@@ -20,13 +17,13 @@ Conditionalize in_pktinfo
  #include "ipsecmast.h"
  
  #define CONTROL_PIPE "/var/run/xl2tpd/l2tp-control"
-@@ -172,7 +172,9 @@
+@@ -182,7 +182,9 @@ struct tunnel
      struct call *self;
      struct lns *lns;            /* LNS that owns us */
      struct lac *lac;            /* LAC that owns us */
 +#ifdef IP_PKTINFO
      struct in_pktinfo my_addr;  /* Address of my endpoint */
 +#endif
- };
- 
- struct tunnel_list
+     char hostname[MAXSTRLEN];   /* Remote hostname */
+     char vendor[MAXSTRLEN];     /* Vendor of remote product */
+     struct challenge chal_us;   /* Their Challenge to us */
