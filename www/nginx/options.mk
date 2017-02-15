@@ -5,7 +5,7 @@ PKG_SUPPORTED_OPTIONS=	dav flv gtools inet6 luajit mail-proxy memcache naxsi \
 			pcre push realip ssl sub uwsgi image-filter \
 			debug status nginx-autodetect-cflags echo \
 			set-misc headers-more array-var encrypted-session \
-			form-input perl gzip v2
+			form-input perl gzip v2 spdy
 
 PKG_SUGGESTED_OPTIONS=	inet6 pcre ssl
 
@@ -215,4 +215,15 @@ PLIST.perl=		yes
 
 .if !empty(PKG_OPTIONS:Mgzip)
 CONFIGURE_ARGS+=	--with-http_gzip_static_module
+.endif
+
+.if !empty(PKG_OPTIONS:Mspdy)
+CONFIGURE_ARGS+=	--with-http_spdy_module
+.endif
+
+.if !empty(PKG_OPTIONS:Mspdy) && !empty(PKG_OPTIONS:Mv2) || make(makesum)
+V2SPDY_PATCH=		nginx-1.9.15-spdy.patch
+PATCHFILES+=		${V2SPDY_PATCH}
+SITES.${V2SPDY_PATCH}=	https://gist.githubusercontent.com/felixbuenemann/44d53b911ebfc2a4ff2b951e49923da8/raw/65fe22435b3b65a8e8cb03587e06160aec3d6f3c
+PATCH_DIST_STRIP.${V2SPDY_PATCH}= -p1
 .endif
