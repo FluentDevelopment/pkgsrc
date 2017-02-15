@@ -11,6 +11,7 @@ include/openssl/bn.h
 include/openssl/buffer.h
 include/openssl/camellia.h
 include/openssl/cast.h
+${PLIST.chacha20}include/openssl/chacha20poly1305.h
 include/openssl/cmac.h
 include/openssl/cms.h
 include/openssl/comp.h
